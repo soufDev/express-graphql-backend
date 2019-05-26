@@ -1,0 +1,81 @@
+query {
+  events {
+    _id
+    creator {
+      email
+      _id
+    }
+    date
+    price
+  }
+}
+
+mutation {
+  createEvent(inputEvent: {
+    title: "New Event",
+    description: "this is a new event",
+    price: 159.99
+  }) {
+    _id
+    title
+    description
+    price
+    date
+  }
+}
+
+mutation {
+  createUser(inputUser: {
+    email: "example1@test.com",
+    password: "test"
+  }) {
+    _id
+    email
+    password
+  }
+}
+
+query {
+  users {
+    email
+    createdEvents {
+      title
+    }
+  }
+}
+
+query {
+  bookings {
+    _id
+    event {
+      title
+      description
+    }
+    user {
+      email
+      _id
+    }
+  }
+}
+
+mutation {
+  bookEvent(eventId: "5ce9b0a97c2f277f7a46ec2c") {
+    event {
+      title
+      _id
+    }
+  	user {
+      email
+    }
+  }
+}
+
+mutation {
+  cancelBooking(bookingId: "5ceb23340357ed7ec0246bb0") {
+    title
+    _id
+    creator {
+      email
+    }
+  }
+}
