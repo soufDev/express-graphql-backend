@@ -145,7 +145,6 @@ module.exports = {
         }
     },
     cancelBooking: async ({ bookingId }) => {
-        console.log({ bookingId });
         try {
             const booking = await Booking.findById(bookingId).populate('event');
             const event = {
@@ -153,7 +152,6 @@ module.exports = {
               _id: booking.event.id,
               creator: user.bind(this, booking.event._doc.creator)
             };
-            console.log({ booking });
             await Booking.deleteOne({ _id: bookingId });
             return event;
           } catch (err) {
